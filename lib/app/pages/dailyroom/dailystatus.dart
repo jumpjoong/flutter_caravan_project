@@ -18,7 +18,7 @@ class _DailyStatusState extends State<DailyStatus> {
     'VIP': ['VIP'],
   };
 
-  void text(String room) async {
+  void addHiveBox(String room) async {
     // 이름
     String name = _name.text;
     // 박스 열기
@@ -46,7 +46,7 @@ class _DailyStatusState extends State<DailyStatus> {
           ),
           ElevatedButton(
             onPressed: () => {
-              text(room),
+              addHiveBox(room),
               //팝업창 닫기
               Navigator.of(context).pop(),
               setState(() {
