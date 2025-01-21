@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "384201046053",
+    "project_id": "flutter-crud-7a01d",
+    "storage_bucket": "flutter-crud-7a01d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384201046053:android:0a118c8f1eccf4d990e7cc",
+        "android_client_info": {
+          "package_name": "com.firebase.study"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXnjaybUhmXMGnUzQ2dffSFhR9K0Fbb9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384201046053:android:69b07a32740351d390e7cc",
+        "android_client_info": {
+          "package_name": "com.todo.todolist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXnjaybUhmXMGnUzQ2dffSFhR9K0Fbb9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
