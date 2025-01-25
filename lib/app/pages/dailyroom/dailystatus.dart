@@ -31,7 +31,7 @@ class _DailyStatusState extends State<DailyStatus> {
   }
 
   //팝업창
-  Future<dynamic> _showdialog(BuildContext context, String room) {
+  _showdialog(BuildContext context, String room) {
     String customorName = _name.text;
 
     return showDialog(

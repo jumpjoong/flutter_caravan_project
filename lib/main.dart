@@ -4,9 +4,9 @@ import 'package:flutter_firebase_study/app/hive_type/customer_data.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
+  Hive.registerAdapter(CustomerDataAdapter());
   await Hive.initFlutter();
   await Hive.openBox<List<CustomerData>>("caravanCustomer");
-  Hive.registerAdapter(CustomerDataAdapter());
   runApp(const MyApp());
 }
 

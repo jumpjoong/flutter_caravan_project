@@ -12,6 +12,57 @@ class DailyRoom extends StatefulWidget {
 }
 
 class _DailyRoomState extends State<DailyRoom> {
+  //길게 누르면 삭제 팝업창
+  Future<void> _showDeletedialog({
+    required BuildContext context,
+    required String room,
+    required String name,
+  }) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text('삭제하시겠습니까?'),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('이름: $name'),
+              Text('객실: $room'),
+            ],
+          ),
+        ),
+        actions: [
+          ElevatedButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('취소'),
+          ),
+          ElevatedButton(
+            onPressed: () => {
+              _deleteCustomer(name: name, room: room),
+              //팝업창 닫기
+              Navigator.of(context).pop(),
+            },
+            child: Text('확인'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _deleteCustomer({required String name, required String room}) async {
+    //박스 참조
+    Box<List<CustomerData>> box =
+        Hive.box<List<CustomerData>>('caravanCustomer');
+    //박스 데이터 가져오기
+    List<CustomerData> customerData =
+        box.get('customerData', defaultValue: <CustomerData>[])!;
+    // 리스트에서 삭제할 데이터 찾기
+    customerData.removeWhere(
+        (customer) => customer.name == name && customer.room == room);
+    // 삭제 후 저장
+    await box.put('customerData', customerData);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +88,10 @@ class _DailyRoomState extends State<DailyRoom> {
             itemBuilder: (context, index) {
               final data = customerData[index];
               return InkWell(
-                highlightColor: Colors.blue.withOpacity(0.5),
+                hoverColor: Colors.blue.withOpacity(0.5),
                 onLongPress: () {
-                  print(data.name);
+                  _showDeletedialog(
+                      name: data.name, room: data.room, context: context);
                 },
                 child: ListTile(
                   title: Text(data.name), // 고객 이름
