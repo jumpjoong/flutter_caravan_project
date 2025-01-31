@@ -51,22 +51,15 @@ class _DailyRoomState extends State<DailyRoom> {
 
   void _deleteCustomer({required String name, required String room}) async {
     //박스 참조
-    Box<List> box = Hive.box<List>('caravanCustomer');
+    Box box = Hive.box('caravanCustomer');
     //박스 데이터 가져오기
     List customerData = box.get('customerData', defaultValue: [])!;
     // 리스트에서 삭제할 데이터 찾기
     customerData.removeWhere(
-        (customer) => customer.name == name && customer.room == room);
+        (customer) => customer['name'] == name && customer['room'] == room);
     // 삭제 후 저장
     await box.put('customerData', customerData);
   }
-
-  // void test() {
-  //   Box box = Hive.box<List>('caravanCustomer');
-  //   List<CustomerData> customerData =
-  //       box.get('customerData', defaultValue: <CustomerData>[])!;
-  //   print(customerData);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +85,6 @@ class _DailyRoomState extends State<DailyRoom> {
             itemCount: customerData.length,
             itemBuilder: (context, index) {
               final data = customerData[index];
-              print(data);
               return InkWell(
                 onTap: () {
                   Navigator.push(
