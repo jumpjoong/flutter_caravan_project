@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_study/app/hive_type/customer_data.dart';
 import 'package:hive/hive.dart';
 
 class DailyStatus extends StatefulWidget {
@@ -22,11 +21,9 @@ class _DailyStatusState extends State<DailyStatus> {
     // 이름
     String name = _name.text;
     // 박스 열기
-    Box<List<CustomerData>> box =
-        Hive.box<List<CustomerData>>('caravanCustomer');
-    List<CustomerData> customerData =
-        box.get('customerData', defaultValue: <CustomerData>[])!;
-    customerData.add(CustomerData(name: name, room: room));
+    Box box = Hive.box('caravanCustomer');
+    List customerData = List.from(box.get('customerData', defaultValue: [])!);
+    customerData.add({'name': name, 'room': room});
     await box.put('customerData', customerData);
   }
 

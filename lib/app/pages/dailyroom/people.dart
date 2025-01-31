@@ -32,7 +32,7 @@ class _PeopleState extends State<People> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('data'),
+        title: Text('인원추가'),
       ),
       body: Center(
         child: Row(

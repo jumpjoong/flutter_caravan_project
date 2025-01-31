@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_study/app/app.dart';
-import 'package:flutter_firebase_study/app/hive_type/customer_data.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
-  Hive.registerAdapter(CustomerDataAdapter());
+  // 앱 초기화가 완료된 후 실행
   await Hive.initFlutter();
-  await Hive.openBox<List<CustomerData>>("caravanCustomer");
+  await Hive.openBox("caravanCustomer");
   runApp(const MyApp());
 }
 
